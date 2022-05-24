@@ -15,11 +15,13 @@ let decrease;
 
 
 
-//#Functions
+//#Functions Part
 
 //## Function run when the page is loaded
 window.onload = () => {
+    //Ask for a counter value to start with
     counter = Number(prompt("Starting time"));//convert the string prompt result to a number 
+    //Format the value
     format();
 };
 
@@ -44,14 +46,19 @@ function format () {
 
 
 //## Timer function - called when start button is clicked
+
+//If + button is clicked
 function increaseTimer() {
     format();
     counter++;
 };
 
+//If - button is clicked
 function decreaseTimer() {
     counter--;
     format();
+
+    //When the counter is at 0, stop the function
     if (counter === 0) {
         clearInterval(interval);
     }
@@ -62,13 +69,14 @@ function decreaseTimer() {
 
 //#Event Listeners 
 
-//## Increase button is clicked. Will be used in combination with start_btn
+//## EL - Increase button (+) is clicked. Will be used in combination with start_btn
 increase_btn.addEventListener("click", () => {
     decrease = false;
     increase = true;
     
 });
 
+//## EL - decrease button (-) is clicked. Will be used in combination with start_btn
 decrease_btn.addEventListener("click", () => {
     increase = false;
     decrease = true;
@@ -76,7 +84,7 @@ decrease_btn.addEventListener("click", () => {
 });
 
 
-//##start button
+//## EL - start button
 start_btn.addEventListener("click", () => {
     //if the counter is running, return
     if (interval) {
@@ -93,13 +101,13 @@ start_btn.addEventListener("click", () => {
 });
 
 
-//##stop button
+//## EL - stop button
 stop_btn.addEventListener("click", () => {
     clearInterval(interval);
     interval = null;
 });
 
-//-##reset button
+//## EL - reset button
 reset_btn.addEventListener("click", () => {
     time_el.innerText = `00:00:00`;
     clearInterval(interval);
